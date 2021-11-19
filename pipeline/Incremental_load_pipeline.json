@@ -21,11 +21,11 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@adddays(utcnow(), -2)",
+								"value": "@pipeline().parameters.windowsStartTime",
 								"type": "Expression"
 							},
 							"modifiedDatetimeEnd": {
-								"value": "@utcnow()",
+								"value": "@pipeline().parameters.windowsEndTime",
 								"type": "Expression"
 							},
 							"wildcardFileName": "*",
@@ -36,9 +36,15 @@
 						}
 					},
 					"sink": {
-						"type": "AzureSqlSink",
-						"tableOption": "autoCreate",
-						"disableMetricsCollection": false
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
 					},
 					"enableStaging": false,
 					"translator": {
@@ -64,6 +70,14 @@
 				]
 			}
 		],
+		"parameters": {
+			"windowsStartTime": {
+				"type": "string"
+			},
+			"windowsEndTime": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
