@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "LookupWatermarkValue",
+				"name": "LookupOldWatermarkValue",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -23,11 +23,12 @@
 					"dataset": {
 						"referenceName": "CheckOutWatermarkValue",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
-				"name": "LookupData",
+				"name": "LookupNewWatermarkValue",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -41,6 +42,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT MAX(LastModifyTime) \nas NewWatermarkValue  \nFROM DataSourceTable",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
