@@ -139,7 +139,14 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "usp_write_watermark"
+				},
+				"linkedServiceName": {
+					"referenceName": "Sink_SQL_DB_LS",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
