@@ -52,13 +52,19 @@
 							"inputs": [
 								{
 									"referenceName": "SourceExcelDS",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"dsSheetName": "@item()"
+									}
 								}
 							],
 							"outputs": [
 								{
 									"referenceName": "SinkSqldbDS",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"TableName": "@item()"
+									}
 								}
 							]
 						}
