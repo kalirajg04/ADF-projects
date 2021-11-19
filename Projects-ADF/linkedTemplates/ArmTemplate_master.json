@@ -19,11 +19,11 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Sink_SQL_DB_LS'"
 		},
-		"Trigger_nq9_properties_pipeline_parameters_windowStart": {
+		"Trigger_ofi_properties_pipeline_parameters_windowStart": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowStartTime"
 		},
-		"Trigger_nq9_properties_pipeline_parameters_windowEnd": {
+		"Trigger_ofi_properties_pipeline_parameters_windowEnd": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowEndTime"
 		},
@@ -63,11 +63,11 @@
 					"Sink_SQL_DB_LS_connectionString": {
 						"value": "[parameters('Sink_SQL_DB_LS_connectionString')]"
 					},
-					"Trigger_nq9_properties_pipeline_parameters_windowStart": {
-						"value": "[parameters('Trigger_nq9_properties_pipeline_parameters_windowStart')]"
+					"Trigger_ofi_properties_pipeline_parameters_windowStart": {
+						"value": "[parameters('Trigger_ofi_properties_pipeline_parameters_windowStart')]"
 					},
-					"Trigger_nq9_properties_pipeline_parameters_windowEnd": {
-						"value": "[parameters('Trigger_nq9_properties_pipeline_parameters_windowEnd')]"
+					"Trigger_ofi_properties_pipeline_parameters_windowEnd": {
+						"value": "[parameters('Trigger_ofi_properties_pipeline_parameters_windowEnd')]"
 					}
 				}
 			},

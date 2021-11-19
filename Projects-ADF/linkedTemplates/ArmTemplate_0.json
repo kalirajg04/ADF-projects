@@ -19,11 +19,11 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Sink_SQL_DB_LS'"
 		},
-		"Trigger_nq9_properties_pipeline_parameters_windowStart": {
+		"Trigger_ofi_properties_pipeline_parameters_windowStart": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowStartTime"
 		},
-		"Trigger_nq9_properties_pipeline_parameters_windowEnd": {
+		"Trigger_ofi_properties_pipeline_parameters_windowEnd": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowEndTime"
 		}
@@ -72,6 +72,29 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Trigger_nq9')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"type": "TumblingWindowTrigger",
+				"typeProperties": {
+					"frequency": "Minute",
+					"interval": 5,
+					"startTime": "2021-11-01T06:16:00Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 50,
+					"retryPolicy": {
+						"count": 0,
+						"intervalInSeconds": 30
+					},
+					"dependsOn": []
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -103,24 +126,25 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DestinationDataset_nq9')]",
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_ofi')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Sink_SQL_DB_LS",
+					"referenceName": "AzureBlobStorageExcelFileLS",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
+				"type": "Binary",
 				"typeProperties": {
-					"schema": "dbo",
-					"table": "IncrementallyLoadedData"
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "output"
+					}
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Sink_SQL_DB_LS')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorageExcelFileLS')]"
 			]
 		},
 		{
@@ -273,7 +297,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SourceDataset_nq9')]",
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_ofi')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -282,14 +306,13 @@
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Json",
+				"type": "Binary",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"container": "input"
 					}
-				},
-				"schema": {}
+				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorageExcelFileLS')]"
@@ -330,13 +353,13 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/CopyPipeline_Incremental')]",
+			"name": "[concat(parameters('factoryName'), '/DeltaCopyFromBlobPipeline')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy_nq9",
+						"name": "Copy_ofi",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -353,12 +376,12 @@
 							},
 							{
 								"name": "Destination",
-								"value": "dbo.IncrementallyLoadedData"
+								"value": "output//"
 							}
 						],
 						"typeProperties": {
 							"source": {
-								"type": "JsonSource",
+								"type": "BinarySource",
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,
@@ -370,30 +393,35 @@
 										"value": "@pipeline().parameters.windowEnd",
 										"type": "Expression"
 									},
-									"wildcardFileName": "*",
-									"enablePartitionDiscovery": false
+									"wildcardFileName": "*"
 								},
 								"formatSettings": {
-									"type": "JsonReadSettings"
+									"type": "BinaryReadSettings"
 								}
 							},
 							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
+								"type": "BinarySink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								}
 							},
 							"enableStaging": false,
+							"enableSkipIncompatibleRow": false,
+							"skipErrorFile": {
+								"fileMissing": true
+							},
 							"validateDataConsistency": false
 						},
 						"inputs": [
 							{
-								"referenceName": "SourceDataset_nq9",
+								"referenceName": "SourceDataset_ofi",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "DestinationDataset_nq9",
+								"referenceName": "DestinationDataset_ofi",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -415,8 +443,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_nq9')]",
-				"[concat(variables('factoryId'), '/datasets/DestinationDataset_nq9')]"
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_ofi')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDataset_ofi')]"
 			]
 		},
 		{
@@ -812,7 +840,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Trigger_nq9')]",
+			"name": "[concat(parameters('factoryName'), '/Trigger_ofi')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -820,17 +848,17 @@
 				"runtimeState": "Stopped",
 				"pipeline": {
 					"pipelineReference": {
-						"referenceName": "CopyPipeline_Incremental",
+						"referenceName": "DeltaCopyFromBlobPipeline",
 						"type": "PipelineReference"
 					},
 					"parameters": {
 						"windowStart": {
 							"type": "Expression",
-							"value": "[parameters('Trigger_nq9_properties_pipeline_parameters_windowStart')]"
+							"value": "[parameters('Trigger_ofi_properties_pipeline_parameters_windowStart')]"
 						},
 						"windowEnd": {
 							"type": "Expression",
-							"value": "[parameters('Trigger_nq9_properties_pipeline_parameters_windowEnd')]"
+							"value": "[parameters('Trigger_ofi_properties_pipeline_parameters_windowEnd')]"
 						}
 					}
 				},
@@ -838,18 +866,17 @@
 				"typeProperties": {
 					"frequency": "Minute",
 					"interval": 5,
-					"startTime": "2021-11-01T06:16:00Z",
+					"startTime": "2021-11-18T10:21:00Z",
 					"delay": "00:00:00",
 					"maxConcurrency": 50,
 					"retryPolicy": {
-						"count": 0,
 						"intervalInSeconds": 30
 					},
 					"dependsOn": []
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_Incremental')]"
+				"[concat(variables('factoryId'), '/pipelines/DeltaCopyFromBlobPipeline')]"
 			]
 		}
 	]
