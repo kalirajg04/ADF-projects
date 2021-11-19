@@ -141,7 +141,23 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "usp_write_watermark"
+					"storedProcedureName": "usp_write_watermark",
+					"storedProcedureParameters": {
+						"LastModifyTime": {
+							"value": {
+								"value": "@activity('LookupOldWatermarkValue').output",
+								"type": "Expression"
+							},
+							"type": "Datetime"
+						},
+						"TableName": {
+							"value": {
+								"value": "@activity('LookupNewWatermarkValue').output",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "Sink_SQL_DB_LS",
