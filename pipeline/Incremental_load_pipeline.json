@@ -28,7 +28,7 @@
 								"value": "@utcnow()",
 								"type": "Expression"
 							},
-							"wildcardFileName": "*",
+							"wildcardFileName": "*xlsx",
 							"enablePartitionDiscovery": false
 						}
 					},
