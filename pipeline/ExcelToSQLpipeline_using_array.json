@@ -58,26 +58,14 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "SourceExcelDS2",
-									"type": "DatasetReference",
-									"parameters": {
-										"dsSheetName": {
-											"value": "@item()",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "SourceExcelDS",
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
 								{
-									"referenceName": "SinkSqldbDS2",
-									"type": "DatasetReference",
-									"parameters": {
-										"TableName": {
-											"value": "@item()",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "SinkSqldbDS",
+									"type": "DatasetReference"
 								}
 							]
 						}
