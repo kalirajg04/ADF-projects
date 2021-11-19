@@ -1,0 +1,17 @@
+{
+	"name": "DestinationDataset_ofi",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorageExcelFileLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "output"
+			}
+		}
+	}
+}
