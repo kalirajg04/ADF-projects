@@ -1,0 +1,22 @@
+{
+	"name": "SourceDataset_incremental_load",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorageExcelFileLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
