@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "Projects-ADF"
+		},
+		"AzureBlobStorageExcelFileLS_connectionString": {
+			"value": ""
+		},
+		"SQL_Db_For_Lookup_connectionString": {
+			"value": ""
+		},
+		"Sink_SQL_DB_LS_connectionString": {
+			"value": ""
+		},
+		"Trigger_nq9_properties_pipeline_parameters_windowStart": {
+			"value": "@trigger().outputs.windowStartTime"
+		},
+		"Trigger_nq9_properties_pipeline_parameters_windowEnd": {
+			"value": "@trigger().outputs.windowEndTime"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
