@@ -1,5 +1,5 @@
 {
-	"name": "ExcelToSQLpipeline",
+	"name": "ExcelToSQLpipeline_using_lookup",
 	"properties": {
 		"activities": [
 			{
