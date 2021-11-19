@@ -1,0 +1,24 @@
+{
+	"name": "SinkSqldbDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sink_SQL_DB_LS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().TableName",
+				"type": "Expression"
+			}
+		}
+	}
+}
