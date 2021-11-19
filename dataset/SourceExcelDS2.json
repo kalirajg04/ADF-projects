@@ -1,0 +1,29 @@
+{
+	"name": "SourceExcelDS2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorageExcelFileLS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"dsSheetName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": {
+				"value": "@dataset().dsSheetName",
+				"type": "Expression"
+			},
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "new york taxi multiple sheets.xlsx",
+				"container": "sahublob"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
