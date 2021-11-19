@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_nq9",
+	"name": "DestinationDataset_incremental_load",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Sink_SQL_DB_LS",
