@@ -1,0 +1,16 @@
+{
+	"name": "DestinationDataset_nq9",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sink_SQL_DB_LS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "IncrementallyLoadedData"
+		}
+	}
+}
