@@ -3,6 +3,12 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Stopped",
+		"pipeline": {
+			"pipelineReference": {
+				"referenceName": "IncrementallyLoadBblobData",
+				"type": "PipelineReference"
+			}
+		},
 		"type": "TumblingWindowTrigger",
 		"typeProperties": {
 			"frequency": "Minute",
@@ -11,7 +17,6 @@
 			"delay": "00:00:00",
 			"maxConcurrency": 50,
 			"retryPolicy": {
-				"count": 0,
 				"intervalInSeconds": 30
 			},
 			"dependsOn": []
