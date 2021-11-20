@@ -141,20 +141,14 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "usp_write_watermark",
+					"storedProcedureName": "[dbo].[usp_write_watermark]",
 					"storedProcedureParameters": {
-						"LastModifiedtime\t": {
-							"value": {
-								"value": "@activity('LookupNewWatermarkValue').output.newwatermarkvalue",
-								"type": "Expression"
-							},
-							"type": "Datetime"
+						"LastModifiedTime": {
+							"value": "",
+							"type": "DateTime"
 						},
-						"TableName": {
-							"value": {
-								"value": "@activity('LookupOldWatermarkValue').output.tablename",
-								"type": "Expression"
-							},
+						"tablename": {
+							"value": "",
 							"type": "String"
 						}
 					}
