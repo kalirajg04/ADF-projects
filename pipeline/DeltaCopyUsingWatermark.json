@@ -42,7 +42,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "SELECT MAX(LastModifyTime) \nas NewWatermarkValue  \nFROM DataSourceTable",
+						"sqlReaderQuery": "SELECT MAX(LastModifyTime) \nas NewWatermarkValue  \nFROM [dbo].[data_source_table]",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -143,16 +143,16 @@
 				"typeProperties": {
 					"storedProcedureName": "usp_write_watermark",
 					"storedProcedureParameters": {
-						"LastModifyTime": {
+						"LastModifiedtime\t": {
 							"value": {
-								"value": "@activity('LookupOldWatermarkValue').output",
+								"value": "@activity('LookupNewWatermarkValue').output.newwatermarkvalue",
 								"type": "Expression"
 							},
 							"type": "Datetime"
 						},
 						"TableName": {
 							"value": {
-								"value": "@activity('LookupNewWatermarkValue').output",
+								"value": "@activity('LookupOldWatermarkValue').output.tablename",
 								"type": "Expression"
 							},
 							"type": "String"
