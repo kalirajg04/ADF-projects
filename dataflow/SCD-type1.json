@@ -25,7 +25,7 @@
 					"name": "Exists1"
 				}
 			],
-			"script": "source(output(\n\t\tEmp_no as string,\n\t\t{ Emp_name} as string,\n\t\t{ Department} as string,\n\t\t{ City} as string,\n\t\t{ LastUpdated_Date} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> empcsv\nsource(output(\n\t\tEmp_no as integer,\n\t\tEmp_name as string,\n\t\tDepartment as string,\n\t\tCity as string,\n\t\tLastUpdated_Date as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> refTable\nempcsv, refTable exists(empcsv@Emp_no == refTable@Emp_no,\n\tnegate:true,\n\tbroadcast: 'auto')~> Exists1"
+			"script": "source(output(\n\t\tEmp_no as string,\n\t\t{ Emp_name} as string,\n\t\t{ Department} as string,\n\t\t{ City} as string,\n\t\t{ LastUpdated_Date} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> empcsv\nsource(output(\n\t\tEmp_no as string,\n\t\tEmp_name as string,\n\t\tDepartment as string,\n\t\tCity as string,\n\t\tLastUpdated_Date as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> refTable\nempcsv, refTable exists(empcsv@Emp_no == refTable@Emp_no,\n\tnegate:true,\n\tbroadcast: 'auto')~> Exists1"
 		}
 	}
 }
