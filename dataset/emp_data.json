@@ -1,0 +1,44 @@
+{
+	"name": "emp_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "emp.csv",
+				"container": "srcdat"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Emp_no",
+				"type": "String"
+			},
+			{
+				"name": " Emp_name",
+				"type": "String"
+			},
+			{
+				"name": " Department",
+				"type": "String"
+			},
+			{
+				"name": " City",
+				"type": "String"
+			},
+			{
+				"name": " LastUpdated_Date",
+				"type": "String"
+			}
+		]
+	}
+}
