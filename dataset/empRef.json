@@ -1,0 +1,37 @@
+{
+	"name": "empRef",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_Db_For_Lookup",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Emp_no",
+				"type": "varchar"
+			},
+			{
+				"name": "Emp_name",
+				"type": "varchar"
+			},
+			{
+				"name": "Department",
+				"type": "varchar"
+			},
+			{
+				"name": "City",
+				"type": "varchar"
+			},
+			{
+				"name": "LastUpdated_Date",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dim_employee"
+		}
+	}
+}
