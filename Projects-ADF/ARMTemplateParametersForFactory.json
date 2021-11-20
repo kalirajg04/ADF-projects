@@ -13,12 +13,6 @@
 		},
 		"Sink_SQL_DB_LS_connectionString": {
 			"value": ""
-		},
-		"Trigger_ofi_properties_pipeline_parameters_windowStart": {
-			"value": "@trigger().outputs.windowStartTime"
-		},
-		"Trigger_ofi_properties_pipeline_parameters_windowEnd": {
-			"value": "@trigger().outputs.windowEndTime"
 		}
 	}
 }
