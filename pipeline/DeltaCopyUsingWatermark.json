@@ -24,7 +24,7 @@
 						"referenceName": "CheckOutWatermarkValue",
 						"type": "DatasetReference"
 					},
-					"firstRowOnly": false
+					"firstRowOnly": true
 				}
 			},
 			{
