@@ -31,12 +31,9 @@
 			"transformations": [
 				{
 					"name": "NotExists"
-				},
-				{
-					"name": "Exists"
 				}
 			],
-			"script": "source(output(\n\t\tEmp_no as string,\n\t\t{ Emp_name} as string,\n\t\t{ Department} as string,\n\t\t{ City} as string,\n\t\t{ LastUpdated_Date} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> empcsv\nsource(output(\n\t\tEmp_no as string,\n\t\tEmp_name as string,\n\t\tDepartment as string,\n\t\tCity as string,\n\t\tLastUpdated_Date as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> refTable\nempcsv, refTable exists(empcsv@Emp_no == refTable@Emp_no,\n\tnegate:true,\n\tbroadcast: 'auto')~> NotExists\nempcsv, refTable exists(empcsv@Emp_no == refTable@Emp_no,\n\tnegate:false,\n\tbroadcast: 'auto')~> Exists\nNotExists sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tEmp_no as string,\n\t\tEmp_name as string,\n\t\tDepartment as string,\n\t\tCity as string,\n\t\tLastUpdated_Date as timestamp\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> NewDataSink"
+			"script": "source(output(\n\t\tEmp_no as string,\n\t\t{ Emp_name} as string,\n\t\t{ Department} as string,\n\t\t{ City} as string,\n\t\t{ LastUpdated_Date} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> empcsv\nsource(output(\n\t\tEmp_no as string,\n\t\tEmp_name as string,\n\t\tDepartment as string,\n\t\tCity as string,\n\t\tLastUpdated_Date as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> refTable\nempcsv, refTable exists(empcsv@Emp_no == refTable@Emp_no,\n\tnegate:true,\n\tbroadcast: 'auto')~> NotExists\nNotExists sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tEmp_no as string,\n\t\tEmp_name as string,\n\t\tDepartment as string,\n\t\tCity as string,\n\t\tLastUpdated_Date as timestamp\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tEmp_no,\n\t\tEmp_name = { Emp_name},\n\t\tDepartment = { Department},\n\t\tCity = { City},\n\t\tLastUpdated_Date = { LastUpdated_Date}\n\t)) ~> NewDataSink"
 		}
 	}
 }
