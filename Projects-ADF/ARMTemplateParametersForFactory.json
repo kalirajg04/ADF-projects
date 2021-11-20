@@ -13,6 +13,9 @@
 		},
 		"Sink_SQL_DB_LS_connectionString": {
 			"value": ""
+		},
+		"AzureBlobStorage_connectionString": {
+			"value": ""
 		}
 	}
 }
