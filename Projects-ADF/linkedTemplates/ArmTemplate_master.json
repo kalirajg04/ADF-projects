@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "Projects-ADF"
 		},
+		"AzureBlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage'"
+		},
 		"AzureBlobStorageExcelFileLS_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageExcelFileLS'"
@@ -18,10 +22,6 @@
 		"Sink_SQL_DB_LS_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Sink_SQL_DB_LS'"
-		},
-		"AzureBlobStorage_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage'"
 		},
 		"containerUri": {
 			"type": "string",
@@ -50,6 +50,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureBlobStorage_connectionString": {
+						"value": "[parameters('AzureBlobStorage_connectionString')]"
+					},
 					"AzureBlobStorageExcelFileLS_connectionString": {
 						"value": "[parameters('AzureBlobStorageExcelFileLS_connectionString')]"
 					},
@@ -58,9 +61,6 @@
 					},
 					"Sink_SQL_DB_LS_connectionString": {
 						"value": "[parameters('Sink_SQL_DB_LS_connectionString')]"
-					},
-					"AzureBlobStorage_connectionString": {
-						"value": "[parameters('AzureBlobStorage_connectionString')]"
 					}
 				}
 			},

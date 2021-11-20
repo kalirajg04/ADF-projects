@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "Projects-ADF"
 		},
+		"AzureBlobStorage_connectionString": {
+			"value": ""
+		},
 		"AzureBlobStorageExcelFileLS_connectionString": {
 			"value": ""
 		},
@@ -12,9 +15,6 @@
 			"value": ""
 		},
 		"Sink_SQL_DB_LS_connectionString": {
-			"value": ""
-		},
-		"AzureBlobStorage_connectionString": {
 			"value": ""
 		},
 		"containerUri": {
