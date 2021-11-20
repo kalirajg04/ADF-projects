@@ -1,0 +1,39 @@
+{
+	"name": "SQL_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sink_SQL_DB_LS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Emp_no",
+				"type": "varchar"
+			},
+			{
+				"name": "Emp_name",
+				"type": "varchar"
+			},
+			{
+				"name": "Department",
+				"type": "varchar"
+			},
+			{
+				"name": "City",
+				"type": "varchar"
+			},
+			{
+				"name": "LastUpdated_Date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dim_employee"
+		}
+	}
+}
