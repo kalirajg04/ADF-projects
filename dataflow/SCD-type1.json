@@ -22,7 +22,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "SQL_sink",
+						"referenceName": "empRef",
 						"type": "DatasetReference"
 					},
 					"name": "NewDataSink"
