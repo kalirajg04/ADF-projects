@@ -1,5 +1,5 @@
 {
-	"name": "AzureSqlTable1",
+	"name": "LookupForMultipltExcelSheets",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "SQL_Db_For_Lookup",
