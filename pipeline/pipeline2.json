@@ -16,18 +16,46 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "ExcelSource",
+						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
 						}
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
-						"referenceName": "PreCopyExcelSourceDS",
+						"referenceName": "Send_mail_ds",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "emp_data",
 						"type": "DatasetReference"
 					}
 				]
@@ -53,7 +81,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": "https://prod-29.northcentralus.logic.azure.com:443/workflows/0c6f4be5cb6c46bfbc3ed5e242863c31/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=VxiudAxtee-VU6RR-gnRx9QhN4X-NHid0Ua8cvnrN94",
-					"method": "POST"
+					"method": "POST",
+					"headers": {
+						"Content-type": "appilication/json"
+					}
 				}
 			}
 		],
