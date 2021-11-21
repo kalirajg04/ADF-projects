@@ -1,3 +1,0 @@
-Using this pipeline, we will copy an excel file containing multiple sheets iteratively. 
-The For-Each activity will iterate over the sheet names stored in a table in the SQL database.
-
