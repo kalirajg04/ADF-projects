@@ -1,5 +1,5 @@
 {
-	"name": "ExcelToSQLpipeline_using_array_copy1",
+	"name": "ExcelToSQLpipeline_using_array",
 	"properties": {
 		"activities": [
 			{
