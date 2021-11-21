@@ -8,11 +8,10 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "Sheet1",
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "new york taxi multiple sheets.xlsx",
-				"container": "sahublob"
+				"fileName": "abvcxz.csv",
+				"container": "input"
 			},
 			"firstRowAsHeader": true
 		},
