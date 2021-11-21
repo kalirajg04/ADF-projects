@@ -27,8 +27,15 @@
 						}
 					},
 					"sink": {
-						"type": "AzureSqlSink",
-						"disableMetricsCollection": false
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
 					},
 					"enableStaging": false,
 					"translator": {
@@ -48,7 +55,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "SinkSqldbDS",
+						"referenceName": "BlobStoreforDeltacopy",
 						"type": "DatasetReference"
 					}
 				]
