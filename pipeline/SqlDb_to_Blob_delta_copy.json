@@ -1,5 +1,5 @@
 {
-	"name": "SqlDb2Blob_delta",
+	"name": "SqlDb_to_Blob_delta_copy",
 	"properties": {
 		"activities": [
 			{
