@@ -1,0 +1,39 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "emp_data",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "empRef",
+						"type": "DatasetReference"
+					},
+					"name": "refData"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SinkSqldbDS",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Exists1"
+				}
+			],
+			"script": "source(output(\n\t\tEmp_no as string,\n\t\t{ Emp_name} as string,\n\t\t{ Department} as string,\n\t\t{ City} as string,\n\t\t{ LastUpdated_Date} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource(output(\n\t\tEmp_no as string,\n\t\tEmp_name as string,\n\t\tDepartment as string,\n\t\tCity as string,\n\t\tLastUpdated_Date as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> refData\nsource1, refData exists(source1@Emp_no == refData@Emp_no,\n\tnegate:true,\n\tbroadcast: 'auto')~> Exists1\nExists1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tEmp_no,\n\t\t{ Emp_name},\n\t\t{ Department},\n\t\t{ City},\n\t\t{ LastUpdated_Date}\n\t)) ~> sink1"
+		}
+	}
+}
