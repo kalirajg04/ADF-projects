@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "SCD_type_1_data_flow_pipeline",
 	"properties": {
 		"activities": [
 			{
