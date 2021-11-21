@@ -33,5 +33,6 @@
 			"schema": "dbo",
 			"table": "dim_employee"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }
