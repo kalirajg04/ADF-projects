@@ -1,1 +1,2 @@
-Using this pipeline, we will copy the data from a SQL database table to a blob storage.
+Using this pipeline, we will incrementally copy the data from a SQL database table to a blob storage using watermark value.
+
