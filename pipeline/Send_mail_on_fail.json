@@ -79,7 +79,7 @@
 						"Content-type": "appilication/json"
 					},
 					"body": {
-						"value": "{\n    \"Pipeline:\": \"@{pipeline().Pipeline}\",\n    \"ErrorMessage\": \"@{activity('Copy data').output.ErrorMessage}\",\n    \"Datafactory\": \"@{pipeline().DataFactory}\",\n    \"RunId\": \"@{pipeline().RunId}\"\n\n}",
+						"value": "{\n    \"Pipeline:\": \"@{pipeline().Pipeline}\",\n    \"ErrorMessage\": \"@{activity('Copy data').output.Error.Message}\",\n    \"Datafactory\": \"@{pipeline().DataFactory}\",\n    \"RunId\": \"@{pipeline().RunId}\"\n\n}",
 						"type": "Expression"
 					}
 				}
