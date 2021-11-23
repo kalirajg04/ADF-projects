@@ -1,5 +1,0 @@
-Using this pipeline, we copy the data from an excel file containing multiple sheets to a SQL database.
-The multiple sheets are taken iteratively. The For-Each activity iterates over the sheet names stored in a table in the SQL database.
-
-Check out the youtube link for the complete process
-https://youtu.be/Ikjlk12Na3I

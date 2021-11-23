@@ -1,1 +1,0 @@
-In this pipeline, we will send a mail using a logic app to alert about pipeline failure.

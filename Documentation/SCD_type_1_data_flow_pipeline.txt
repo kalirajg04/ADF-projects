@@ -1,2 +1,0 @@
-Using this pipeline, we copy data from an Azure blob storage to a SQL database using Slowly Changing Dimension 1, that is, 
-the new data overwrites the existing data. To incorporate this logic into the pipeline, we use the data flow task.
