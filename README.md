@@ -1,6 +1,6 @@
 # ADF projects
 This repository contains labs and end-to-end projects that I have done on Azure Data Factory. 
-Reference for the pipelines.
+I have attached the reference for the pipelines.
 Please check it out!
 
 1. Excel-To-SQL-pipeline-using-array
