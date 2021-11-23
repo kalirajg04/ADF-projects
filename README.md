@@ -31,3 +31,5 @@ Please check it out!
 5. SqlDb_to_Blob_delta_copy.txt 
 
    Using this pipeline, we will incrementally copy the data from a SQL database table to a blob storage using a watermark value. 
+   
+   https://www.youtube.com/watch?v=WyZo7ZtSStY
