@@ -80,13 +80,13 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://prod-00.northcentralus.logic.azure.com:443/workflows/574621a79f6243fcb34ad75a7642296f/triggers/request/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Frequest%2Frun&sv=1.0&sig=_wkHgsJWMs5YTJWPnNO8GNMVhyVa_AU-uwTOM-H5iiQ",
+					"url": "https://prod-15.northcentralus.logic.azure.com:443/workflows/de5854733b9547c9b4ee5530105bbace/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=1kxnWyoQqI_S2demHAjHKkOiZVRQwHymgHKR7mvT1IQ",
 					"method": "POST",
 					"headers": {
 						"Content-type": "appilication/json"
 					},
 					"body": {
-						"value": "{\n    \"Pipeline:\": \"@{pipeline().Pipeline}\",\n    \"Datafactory\": \"@{pipeline().DataFactory}\",\n    \"RunId\": \"@{pipeline().RunId}\"\n\n}",
+						"value": "{\n    \"Pipeline:\": \"@{pipeline().Pipeline}\",\n    \"RunId\": \"@{pipeline().RunId}\",\n    \"DatafactoryName\": \"@{pipeline().DataFactory}\"\n\n}\n\n",
 						"type": "Expression"
 					}
 				}
